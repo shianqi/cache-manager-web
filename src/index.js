@@ -9,7 +9,7 @@ import CallbackFiller from './callback_filler'
 const Creator = (args = {}) => {
   const self = {}
   const storeName = args.store || 'memory'
-  self.store = require('./stores/' + storeName).create(args)
+  self.store = require(`./stores/${storeName}.js`).default.create(args)
   self.ignoreCacheErrors = args.ignoreCacheErrors || false
   const callbackFiller = new CallbackFiller()
 
@@ -45,6 +45,14 @@ const Creator = (args = {}) => {
       cb = options
       options = {}
     }
+
+    if (!cb) {
+      cb = () => {}
+    }
+
+    var hasKey = callbackFiller.has(key)
+    callbackFiller.add(key, cb)
+    if (hasKey) { return }
 
     self.store.get(key, options, async (err, result) => {
       if (err && (!self.ignoreCacheErrors)) {

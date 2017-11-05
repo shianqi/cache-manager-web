@@ -21,7 +21,7 @@ const memoryStore = (args = {}) => {
 
   const lruCache = new Lru(lruOpts)
 
-  self.set = (key, value, options = {}, cb) => {
+  self.set = (key, options = {}, value, cb) => {
     if (typeof options === 'function') {
       cb = options
       options = {}
