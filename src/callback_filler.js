@@ -7,7 +7,9 @@ class CallbackFiller {
     delete this.queues[key]
 
     waiting.forEach((cb) => {
-      cb(err, data)
+      setTimeout(() => {
+        cb(err, data)
+      }, 0)
     })
   }
   has (key) {

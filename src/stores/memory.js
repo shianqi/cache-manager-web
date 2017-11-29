@@ -31,7 +31,9 @@ const memoryStore = (args = {}) => {
     const maxAge = (ttl || ttl === 0) ? ttl * 1000 : lruOpts.maxAge
     lruCache.set(key, value, maxAge)
     if (cb) {
-      cb()
+      setTimeout(() => {
+        cb()
+      }, 0)
     } else {
       return Promise.resolve(value)
     }
@@ -44,7 +46,9 @@ const memoryStore = (args = {}) => {
     var value = lruCache.get(key)
 
     if (cb) {
-      cb(null, value)
+      setTimeout(() => {
+        cb(null, value)
+      }, 0)
     } else {
       return value
     }
@@ -56,21 +60,27 @@ const memoryStore = (args = {}) => {
     }
     lruCache.del(key)
     if (cb) {
-      cb()
+      setTimeout(() => {
+        cb()
+      })
     }
   }
 
   self.reset = (cb) => {
     lruCache.reset()
     if (cb) {
-      cb()
+      setTimeout(() => {
+        cb()
+      })
     }
   }
 
   self.keys = (cb) => {
     const keys = lruCache.keys()
     if (cb) {
-      cb(null, keys)
+      setTimeout(() => {
+        cb(null, keys)
+      })
     } else {
       return keys
     }
