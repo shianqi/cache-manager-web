@@ -3,7 +3,7 @@ module.exports = {
   rules: {
     'comma-dangle': [2, 'only-multiline'],
     'no-unused-vars': 1,
-    'semi': [2, 'always'],
+    'semi': [2, 'never'],
   },
   plugins: [
     'mocha',

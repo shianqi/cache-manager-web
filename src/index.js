@@ -40,6 +40,7 @@ const Creator = (args = {}) => {
    *       console.log(user);
    *   });
    */
+
   self.wrap = (key, work, options, cb) => {
     if (typeof options === 'function') {
       cb = options
@@ -47,9 +48,18 @@ const Creator = (args = {}) => {
     }
 
     if (!cb) {
-      cb = () => {}
+      return new Promise((resolve, reject) => {
+        _wrap(key, work, options, (err, data) => {
+          if (err) reject(err)
+          resolve(data)
+        })
+      })
+    } else {
+      _wrap(key, work, options, cb)
     }
+  }
 
+  const _wrap = (key, work, options, cb) => {
     var hasKey = callbackFiller.has(key)
     callbackFiller.add(key, cb)
     if (hasKey) { return }
