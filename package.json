@@ -1,19 +1,29 @@
 {
   "name": "cache-manager-web",
-  "version": "0.0.2",
-  "description": "",
-  "main": "src/index.js",
+  "version": "0.0.3",
+  "description": "A browser-side cache management tool",
+  "main": "lib/index.js",
   "scripts": {
     "build": "babel src -d lib --copy-file",
     "build-watch": "babel src -d lib --copy-file --watch",
-    "test": "mocha --require babel-core/register -t 5000 test/*.test.js",
+    "test": "nyc mocha --require babel-core/register -t 5000 test/*.test.js",
     "lint": "eslint src/**/*.js",
     "tag": "git tag npm-v$npm_package_version",
     "prepublish": "in-publish && npm run build || not-in-publish",
     "postversion": "git commit package.json -m \"npm-v$npm_package_version\" && npm run tag && git push && git push --tags"
   },
   "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:shianqi/cache-manager-web.git"
+  },
+  "license": "MIT",
+  "nyc": {
+    "reporter": [
+      "lcov",
+      "text"
+    ]
+  },
   "dependencies": {
     "babel-runtime": "^6.26.0",
     "lru-cache": "^4.1.1"
@@ -30,6 +40,8 @@
     "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
-    "mocha": "^5.1.1"
+    "in-publish": "^2.0.0",
+    "mocha": "^5.1.1",
+    "nyc": "^11.7.1"
   }
 }

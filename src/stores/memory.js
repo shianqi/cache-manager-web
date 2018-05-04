@@ -13,7 +13,7 @@ const memoryStore = (args = {}) => {
   } = args
   const lruOpts = {
     max,
-    maxAge: (ttl || ttl === 0) ? ttl * 1000 : null,
+    maxAge: (ttl || ttl === 0) ? ttl : null,
     dispose,
     lenght,
     stale
@@ -28,7 +28,7 @@ const memoryStore = (args = {}) => {
     }
 
     const { ttl } = options
-    const maxAge = (ttl || ttl === 0) ? ttl * 1000 : lruOpts.maxAge
+    const maxAge = (ttl || ttl === 0) ? ttl : lruOpts.maxAge
     lruCache.set(key, value, maxAge)
     if (cb) {
       setTimeout(() => {

@@ -1,0 +1,9 @@
+.nyc_output/
+coverage/
+src/
+test/
+.babelrc
+.editorconfig
+.eslintignore
+.eslintrc
+.gitignore

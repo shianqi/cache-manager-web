@@ -30,7 +30,7 @@ const Creator = (args = {}) => {
    * @param {string} key - The cache key to use in cache operations
    * @param {function} work - The function to wrap
    * @param {object} [options] - options passed to `set` function
-   * @param {function} cb - callback function
+   * @param {function} [cb] - callback function
    *
    * @example
    *   var key = 'user_' + userId;
@@ -73,7 +73,8 @@ const Creator = (args = {}) => {
         try {
           const data = await work()
           if (!self._isCacheableValue(data)) {
-            return cb()
+            callbackFiller.fill(key, null, data)
+            return
           }
           self.store.set(key, options, data, (err) => {
             if (err && (!self.ignoreCacheErrors)) {
