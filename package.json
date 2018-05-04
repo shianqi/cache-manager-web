@@ -6,6 +6,7 @@
   "scripts": {
     "build": "babel src -d lib --copy-file",
     "build-watch": "babel src -d lib --copy-file --watch",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
     "test": "nyc mocha --require babel-core/register -t 5000 test/*.test.js",
     "lint": "eslint src/**/*.js",
     "tag": "git tag npm-v$npm_package_version",
@@ -33,6 +34,7 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "chai": "^4.1.2",
+    "coveralls": "^3.0.1",
     "eslint": "^4.10.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.8.0",
