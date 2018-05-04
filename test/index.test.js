@@ -22,7 +22,7 @@ describe('Cache.wrap', () => {
     describe('Not use Callback', () => {
       it('should return a Promise', () => {
         const func = Cache.wrap('test', getDate)
-        expect(func).to.be.a('promise')
+        expect(func instanceof Promise).to.equal(true)
       })
     })
 
