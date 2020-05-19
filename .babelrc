@@ -1,8 +1,6 @@
 {
   "presets": [
-    ["env", {"targets": { "node": 4 }, "debug": false}]
+    ["env", { "targets": { "node": 4, "ie": "11" }, "debug": false }]
   ],
-  "plugins": [
-    "transform-runtime"
-  ]
+  "plugins": ["transform-runtime"]
 }
